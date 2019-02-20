@@ -5,7 +5,7 @@ from django.db import models
 class Album(models.Model):
     album_title = models.CharField(max_length=200)
     artist = models.CharField(max_length=200)
-    image = models.CharField(max_length=300)
+    image = models.CharField(max_length=300, blank=True, null=True)
     class Meta:
         ordering = ['album_title']
 
@@ -21,7 +21,7 @@ class File_type(models.Model):
 class Song(models.Model):
     song_title = models.CharField(max_length=200)
     album = models.ForeignKey(Album, on_delete=models.CASCADE)
-    file_type = models.ForeignKey(File_type, on_delete=models.CASCADE)
+    file_url = models.CharField(max_length=500)
 
     class Meta:
         ordering = ['song_title']

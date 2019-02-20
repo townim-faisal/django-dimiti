@@ -6,7 +6,7 @@
 
 {% block body %}
     <div class="container-fluid songs-container">
-
+    {% include 'music/song/create_song.html' %}
     <div class="row">
 
         <!-- Left Album Info -->
@@ -31,7 +31,7 @@
 
             <ul class="nav nav-pills" style="margin-bottom: 10px;">
                 <li role="presentation" class="active"><a href="{% url 'music:album-details' album.id %}">View All</a></li>
-                <li role="presentation"><a href="#">Add New Song</a></li>
+                <li role="presentation"><a href="#" onclick="document.getElementById('id01').style.display='block'" class=" btn btn-success w3-margin-left">Add New Song</a></li>
             </ul>
 
             <div class="panel panel-default">
@@ -57,7 +57,7 @@
                             <tr>
                                 <td>{{ song.song_title }}</td>
                                 <td>
-                                    <a target="_blank" href="#">
+                                    <a target="_blank" href="{{ song.file_url }}">
                                         <button type="button" class="btn btn-success btn-xs">
                                             <span class="glyphicon glyphicon-play"></span>&nbsp; Play
                                         </button>
@@ -88,15 +88,4 @@
     </div>
 
 </div>
-
-    <!--img src="{{ album.image }}" height="200px" width="200px" style="border-radius: 5%">
-    <br>
-    <h2>{{ album.album_title }}</h2>
-    <h3>{{ album.artist }}</h3>
-
-    <ul>
-        {% for song in songs %}
-            <li>{{ song }}.{{ song.file_type }}</li>
-        {% endfor %}
-    </ul-->
 {% endblock %}

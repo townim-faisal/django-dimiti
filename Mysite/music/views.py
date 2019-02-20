@@ -1,32 +1,39 @@
-from django.http import HttpResponse
-from django.shortcuts import render, get_object_or_404
-from music.models import Album, Song
-
-
+from .albums.album_crud import *
+from .song.song_crud import *
+import pyrebase;
 # Create your views here.
-def album_list(request):
-    albums = Album.objects.all()
-    context = {
-        'title': 'song list',
-        'albums': albums,
+##Firebase
+
+class FB_C:
+    config = {
+        'apiKey': "AIzaSyBnmaZaBEOclGeVeJHygiTMvSvc6v2BWMg",
+        'authDomain': "theoryofcreativity-4241e.firebaseapp.com",
+        'databaseURL': "https://theoryofcreativity-4241e.firebaseio.com",
+        'projectId': "theoryofcreativity-4241e",
+        'storageBucket': "theoryofcreativity-4241e.appspot.com",
+        'messagingSenderId': "789207444088"
     }
-    return render(request, 'music/album_list.html', context)
+    def get_firebase_instance(self):
+        return pyrebase.initialize_app(self.config)
+
+
+##
+
+
+def album_list(request):
+    return get_album_list(request)
+
 
 def album_details(request, album_id):
-    album = get_object_or_404(Album, pk=album_id)
-    songs = album.song_set.all()
-    context = {
-        'title': album.album_title,
-        'album': album,
-        'songs': songs
-    }
-    return render(request, 'music/details.html', context)
+    return get_album_details(request, album_id)
 
 
 def song_list(request):
-    songs = Song.objects.all()
-    context = {
-        'songs': songs,
-        'title': 'All songs'
-    }
-    return render(request, 'music/song_list.html', context)
+    return get_song_list(request)
+
+
+def create_album(request):
+    return make_album(request)
+
+def create_song(request, album_id):
+    return make_song(request, album_id)

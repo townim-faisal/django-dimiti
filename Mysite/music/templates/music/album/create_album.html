@@ -1,0 +1,49 @@
+{% extends 'music/base.html' %}
+
+
+{% block body %}
+    <div class="col-lg-4 col md-6">
+        <div class="thumbnail w3-container w3-teal form-container">
+            {% if error_msg %}
+                {% for e in error_msg %}
+                    <div class="col-lg-4 col-sm-2"></div>
+                    <div class="col-lg-8 col-sm-10"  style="padding: 0; margin: 0"><p class="w3-medium w3-center error_msg" style="padding: 0; margin-bottom: 2%;">{{ e }}!</p></div>
+                {% endfor %}
+            {% endif %}
+
+            <form class="form-horizontal" method="post" action="{% url 'music:create-album' %}" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label class="control-label col-lg-4 col-sm-2" for="album_title">Album title:</label>
+                    <div class="col-lg-8 col-sm-10">
+                        <input type="text" class="form-control" id="album_title" placeholder="Enter album name" name="album_title">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-lg-4 col-sm-2" for="artist">Artist:</label>
+                    <div class="col-lg-8 col-sm-10">
+                        <input type="text" class="form-control" id="artist" placeholder="Enter artist name" name="artist">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-lg-4 col-sm-2" for="album_cover">Album cover:</label>
+                    <div class="col-lg-8 col-sm-10">
+                        <!--file input example -->
+                        <span class="">
+                          <input type="file" id="album_cover" name="album_cover" style="margin-top: 5px;">
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-lg-4 col-sm-2" for=""></label>
+                    <div class="col-lg-8 col-sm-10">
+                        <!--file input example -->
+                        <span class="">
+                          <input type="submit" id="create" name="create_btn" class="btn btn-default">
+                        </span>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

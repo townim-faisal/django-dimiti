@@ -8,10 +8,10 @@
     <div class="row">
         <div class="col-sm-12">
             {% for song in songs %}
-                <div class="col-sm-4 col-lg-4 frame-album">
+                <div class="col-sm-4 col-lg-4">
                     <div class="thumbnail">
                         <div class="caption bg-info">
-                            <a href="#"><h5><span class="glyphicon glyphicon-music"></span> {{ song.song_title }}</h5></a>
+                            <a href="{{ song.file_url }}"><h5><span class="glyphicon glyphicon-music"></span> {{ song.song_title }}</h5></a>
                             <h6>{{ song.album }}</h6>
                             <!-- Delete Album -->
                             <form action="#" method="post" style="display: inline;">

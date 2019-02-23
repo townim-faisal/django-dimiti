@@ -1,16 +1,7 @@
-from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404
 from music.models import Song
+from music.others.firebase_crud import save_file_to_firebase, delete_from_firebase
 
-
-def save_file_to_firebase(file, album_name):
-    from ..views import FB_C
-    audio_file_folder = 'music/song/'+album_name+'/'
-    firebase = FB_C().get_firebase_instance()
-    storage = firebase.storage()
-    storage.child(audio_file_folder + str(file)).put(file)
-    file_url = storage.child(audio_file_folder + str(file)).get_url(None)
-    return file_url
 
 def get_song_list(request):
     songs = Song.objects.all()
@@ -41,11 +32,13 @@ def make_song(request, album_id):
             else:
                 audio_file = request.FILES['song_file']
 
-        print(error_msg)
+        #print(error_msg)
         if(is_form_valid):
             current_album = Album.objects.get(pk=album_id)
-            audio_file = save_file_to_firebase(audio_file, current_album.album_title+str(album_id))
-            song = Song(song_title=song_title, album=current_album, file_url=audio_file)
+            audio_file = save_file_to_firebase(file=audio_file, type='audio', album_name=current_album.album_title+str(album_id))
+            file_url = audio_file[0]
+            file_path = audio_file[1]
+            song = Song(song_title=song_title, album=current_album, file_url=file_url, file_path=file_path)
             song.save()
             return album_details(request, album_id)
         album = get_object_or_404(Album, pk=album_id)
@@ -56,6 +49,18 @@ def make_song(request, album_id):
             'songs': songs,
             'error_msg': error_msg,
         }
-        return render(request, 'music/album/details.html', context)
+        return album_details(request, album_id, context = context)
+        #return render(request, 'music/album/details.html', context)
     else:
         return album_details(request, album_id)
+
+
+def remove_song(request, album_id, song_id):
+    from ..views import album_details, song_list
+    song = get_object_or_404(Song, id=song_id)
+    delete_from_firebase(song.file_path)
+    song.delete()
+    if album_id:
+        return album_details(request, album_id)
+    else:
+        return song_list(request)

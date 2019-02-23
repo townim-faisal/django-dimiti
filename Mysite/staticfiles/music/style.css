@@ -1,0 +1,46 @@
+body {
+    background: white url("images/background2.png");
+}
+
+ul.errorlist {
+    padding-left: 0;
+}
+
+ul.errorlist > li {
+    list-style: none;
+}
+
+.navbar {
+    border-radius: 0;
+}
+
+.navbar-brand {
+    font-family: 'Satisfy', cursive;
+}
+
+.glyphicon-star {
+    color: #CCCCCC;
+    font-size: 16px;
+}
+
+.glyphicon-star.active {
+    color: #FDB230;
+}
+
+.frame-album{
+    height: 200px;
+}
+
+.frame-album img{
+    height: 200px;
+}
+
+.form-container{
+    padding-top: 25px;
+    padding-left: 25px;
+    padding-right: 25px;
+    padding-bottom: 5px;
+}
+form, .error_msg {
+  font-family: "Comic Sans MS", cursive, sans-serif;
+}

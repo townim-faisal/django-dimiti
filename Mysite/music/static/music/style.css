@@ -1,5 +1,6 @@
 body {
-    background: white url("images/background.png");
+    background: white url("images/bg.jpg");
+
 }
 
 ul.errorlist {
@@ -44,3 +45,4 @@ ul.errorlist > li {
 form, .error_msg {
   font-family: "Comic Sans MS", cursive, sans-serif;
 }
+

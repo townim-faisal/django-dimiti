@@ -5,33 +5,28 @@
     {% endblock %}
 
 {% block body %}
-    <div class="row">
+    <div class="row" style="height: 320px">
         <div class="col-sm-12">
             {% for song in songs %}
-                <div class="col-sm-4 col-lg-4">
-                    <div class="thumbnail">
-                        <div class="caption bg-info">
-                            <a href="{{ song.file_url }}"><h5><span class="glyphicon glyphicon-music"></span> {{ song.song_title }}</h5></a>
+                <div class="col-sm-12 col-lg-3">
+                    <div class="thumbnail w3-border w3-border-black w3-light-grey" style="border-radius: 0px">
+                        <div class="caption w3-teal w3-text-light-grey">
+                        <span class="glyphicon glyphicon-music w3-right w3-margin-top w3-margin-right w3-xxlarge"></span>
+                            <a href="{{ song.file_url }}"><h5 class="w3-text-light-grey"><span class="glyphicon glyphicon-music"></span> {{ song.song_title }}</h5></a>
                             <h6>{{ song.album }}</h6>
                             <!-- Delete Album -->
-                            <form action="#" method="post" style="display: inline;">
-                                {% csrf_token %}
-                                <input type="hidden" name="album_id" value="" />
-                                <button type="submit" class="btn btn-danger btn-xs">
-                                    <span class="glyphicon glyphicon-trash"></span>
-                                </button>
-                                <a href="#" class="btn btn-primary btn-xs btn-favorite" role="button">
-                                <span class="glyphicon glyphicon-thumbs-up"></span>
-                                </a>
-                            <button class="btn btn-success btn-xs btn-favorite" role="button">
+                            <a href="#" class="btn btn-primary btn-xs btn-favorite w3-border" role="button">
+                            <span class="glyphicon glyphicon-thumbs-up"></span>
+                            </a>
+                            <a href="{{ song.file_url }}" target=_blank" class="btn btn-success w3-border btn-xs btn-favorite" role="button">
                                 <span class="glyphicon glyphicon-play-circle"></span>
-                            </button>
-                            </form>
+                            </a>
+
+                            <a href="{% if album %}{% url 'music:delete-song-fa' album.id song.id%}{% else %}{% url 'music:delete-song' song.id%}{% endif %}">
+                                    <button class="w3-border btn btn-danger btn-xs"><span class="glyphicon glyphicon-trash"></span></button>
+                            </a>
 
                             <!-- Favorite Album -->
-
-
-
                         </div>
                     </div>
                     <br>

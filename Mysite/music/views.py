@@ -4,17 +4,6 @@ import pyrebase;
 # Create your views here.
 ##Firebase
 
-class FB_C:
-    config = {
-        'apiKey': "AIzaSyBnmaZaBEOclGeVeJHygiTMvSvc6v2BWMg",
-        'authDomain': "theoryofcreativity-4241e.firebaseapp.com",
-        'databaseURL': "https://theoryofcreativity-4241e.firebaseio.com",
-        'projectId': "theoryofcreativity-4241e",
-        'storageBucket': "theoryofcreativity-4241e.appspot.com",
-        'messagingSenderId': "789207444088"
-    }
-    def get_firebase_instance(self):
-        return pyrebase.initialize_app(self.config)
 
 
 ##
@@ -24,8 +13,8 @@ def album_list(request):
     return get_album_list(request)
 
 
-def album_details(request, album_id):
-    return get_album_details(request, album_id)
+def album_details(request, album_id, **kwargs):
+    return get_album_details(request, album_id, **kwargs)
 
 
 def song_list(request):
@@ -37,3 +26,10 @@ def create_album(request):
 
 def create_song(request, album_id):
     return make_song(request, album_id)
+
+def delete_song(request, album_id=None, song_id=None):
+    return remove_song(request, album_id, song_id)
+
+
+def delete_album(request, album_id):
+    return remove_album(request, album_id)

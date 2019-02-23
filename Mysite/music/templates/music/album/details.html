@@ -11,17 +11,17 @@
 
         <!-- Left Album Info -->
         <div class="col-sm-4 col-md-3">
-            <div class="panel panel-default">
+            <div class="panel panel-default w3-teal w3-border w3-border-black">
                 <div class="panel-body">
                     <a href="{% url 'music:album-details' album.id %}">
                         {% if album.image %}
-                            <img src="{{ album.image }}" class="img-responsive">
+                            <img src="{{ album.image }}" class="img-responsive w3-border w3-border-black">
                         {% else %}
                             <h3>No image to display</h3>
                         {% endif %}
                     </a>
-                    <h3 class="text-primary">{{ album.album_title }} </h3>
-                    <h4 class="text-primary">{{ album.artist }}<small class="text-info"><h4>{{ songs.count }} songs found:</h4></small></h4>
+                    <h3 class="">{{ album.album_title }} </h3>
+                    <h4 class="">{{ album.artist }}<small class="w3-text-light-grey"><h4>{{ songs.count }} songs found:</h4></small></h4>
                 </div>
             </div>
         </div>
@@ -30,11 +30,10 @@
         <div class="col-sm-8 col-md-9">
 
             <ul class="nav nav-pills" style="margin-bottom: 10px;">
-                <li role="presentation" class="active"><a href="{% url 'music:album-details' album.id %}">View All</a></li>
-                <li role="presentation"><a href="#" onclick="document.getElementById('id01').style.display='block'" class=" btn btn-success w3-margin-left">Add New Song</a></li>
+                <li role="presentation" class="w3-teal w3-border w3-border-black"><a href="#" onclick="document.getElementById('id01').style.display='block'" class=" w3-text-white">Add New Song</a></li>
             </ul>
 
-            <div class="panel panel-default">
+            <div class="panel panel-default w3-teal w3-border w3-border-black">
                 <div class="panel-body">
 
                     <h3>All Songs</h3>
@@ -43,7 +42,7 @@
                         <p><strong>{{ error_message }}</strong></p>
                     {% endif %}
 
-                    <table class="table">
+                    <table class="table ">
                         <thead>
                         <tr>
                             <th>Title</th>
@@ -52,13 +51,13 @@
                             <th>Actions</th>
                         </tr>
                         </thead>
-                        <tbody>
+                        <tbody class="">
                         {% for song in album.song_set.all %}
                             <tr>
                                 <td>{{ song.song_title }}</td>
                                 <td>
                                     <a target="_blank" href="{{ song.file_url }}">
-                                        <button type="button" class="btn btn-success btn-xs">
+                                        <button type="button" class="btn btn-success w3-border-black btn-xs">
                                             <span class="glyphicon glyphicon-play"></span>&nbsp; Play
                                         </button>
                                     </a>
@@ -67,10 +66,10 @@
                                     <a href="#" class="btn-favorite"><span class="glyphicon glyphicon-star {% if song.is_favorite %}active{% endif %}"></span></a>
                                 </td>
                                 <td>
-                                    <form action="#" method="post" style="display: inline;">
+                                    <form action="{% if album %}{% url 'music:delete-song-fa' album.id song.id%}{% else %}{% url 'music:delete-song' song.id%}{% endif %}" method="post" style="display: inline;">
                                         {% csrf_token %}
                                         <input type="hidden" name="song_id" value="{{ song.id }}" />
-                                        <button type="submit" class="btn btn-danger btn-xs">
+                                        <button type="submit" class="w3-border-1 w3-border-black btn-danger btn-xs" style="border: 1px solid black">
                                             <span class="glyphicon glyphicon-remove"></span>&nbsp; Delete
                                         </button>
                                     </form>

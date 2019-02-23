@@ -10,13 +10,13 @@
     {% load staticfiles %}
     <link rel="shortcut icon" type="image/png" href="{%  static 'favicon.ico' %}"/>
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-flat.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <link href='https://fonts.googleapis.com/css?family=Satisfy' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="{% static 'music/style.css' %}"/>
     {% block custom_css %}
     {% endblock %}
-    {% block custom_script %}
-    {% endblock %}
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <script src="{% static 'music/js/main.js' %}"></script>
@@ -24,7 +24,7 @@
 </head>
 <body>
 
-    <nav class="navbar navbar-inverse">
+    <nav class="navbar navbar-inverse w3-black">
         <div class="container-fluid">
 
             <!-- Header -->
@@ -80,6 +80,9 @@
         {% endif %}
 
     </script>
+    {% block custom_script %}
+    {% endblock %}
+
 
 </body>
 </html>

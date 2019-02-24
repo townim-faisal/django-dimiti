@@ -23,5 +23,10 @@ app_name = 'music'
 urlpatterns = [
     re_path(r'^$', views.album_list, name='album-list'),
     path('<int:album_id>/', views.album_details, name='album-details'),
-    path('all-songs/', views.song_list, name='song-list')
+    path('all-songs/', views.song_list, name='song-list'),
+    path('create_album/', views.create_album, name='create-album'),
+    path('create_song/<int:album_id>/', views.create_song, name='create-song'),
+    path('delete_album/<int:album_id>/', views.delete_album, name='delete-album'),
+    path('delete_song/<int:album_id>/<int:song_id>/', views.delete_song, name='delete-song-fa'),
+    path('delete_song/<int:song_id>/', views.delete_song, name='delete-song'),
 ]

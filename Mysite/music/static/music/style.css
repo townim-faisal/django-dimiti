@@ -1,5 +1,6 @@
 body {
-    background: white url("images/background.png");
+    background: white url("images/bg.jpg");
+
 }
 
 ul.errorlist {
@@ -34,3 +35,14 @@ ul.errorlist > li {
 .frame-album img{
     height: 200px;
 }
+
+.form-container{
+    padding-top: 25px;
+    padding-left: 25px;
+    padding-right: 25px;
+    padding-bottom: 5px;
+}
+form, .error_msg {
+  font-family: "Comic Sans MS", cursive, sans-serif;
+}
+

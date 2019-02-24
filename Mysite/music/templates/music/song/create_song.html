@@ -1,0 +1,39 @@
+<div id="id01" class="w3-modal w3-border w3-border-white">
+    <div class="w3-modal-content w3-light-grey w3-animate-top w3-card-4 w3-border w3-border-black" style="max-width:600px">
+      <header class="w3-container w3-teal w3-border w3-border-white">
+        <span onclick="document.getElementById('id01').style.display='none'"
+        class="w3-button w3-display-topright w3-border w3-border-white">&times;</span>
+        <h2>Add Song</h2>
+      </header>
+      <div class="w3-container w3-margin">
+        <form class="form-horizontal" method="post" action="{% url 'music:create-song' album.id %}" enctype="multipart/form-data">
+            {% csrf_token %}
+                <div class="form-group">
+                    <label class="control-label col-lg-4 col-sm-2" for="song_title">Song title:</label>
+                    <div class="col-lg-8 col-sm-10">
+                        <input type="text" class="form-control w3-border w3-border-black" id="song_title" placeholder="Enter song name" name="song_title">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-lg-4 col-sm-2" for="song_file">Audio File:</label>
+                    <div class="col-lg-8 col-sm-10">
+                        <!--file input example -->
+                        <span class="">
+                          <input type="file" id="song_file" name="song_file" style="margin-top: 5px;" class=" w3-border w3-border-black">
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-lg-4 col-sm-2" for=""></label>
+                    <div class="col-lg-8 col-sm-10">
+                        <!--file input example -->
+                        <span class="">
+                          <input type="submit" id="create" name="create_btn" class="btn btn-default w3-border w3-border-black">
+                        </span>
+                    </div>
+                </div>
+            </form>
+      </div>
+    </div>
+  </div>

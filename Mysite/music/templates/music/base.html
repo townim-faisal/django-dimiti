@@ -9,13 +9,14 @@
 
     {% load staticfiles %}
     <link rel="shortcut icon" type="image/png" href="{%  static 'favicon.ico' %}"/>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-flat.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <link href='https://fonts.googleapis.com/css?family=Satisfy' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="{% static 'music/style.css' %}"/>
     {% block custom_css %}
     {% endblock %}
-    {% block custom_script %}
-    {% endblock %}
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <script src="{% static 'music/js/main.js' %}"></script>
@@ -23,7 +24,7 @@
 </head>
 <body>
 
-    <nav class="navbar navbar-inverse">
+    <nav class="navbar navbar-inverse w3-black">
         <div class="container-fluid">
 
             <!-- Header -->
@@ -50,7 +51,7 @@
                 </form>
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <a href="#">
+                        <a href="{% url 'music:create-album' %}">
                             <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp; Add Album
                         </a>
                     </li>
@@ -70,5 +71,18 @@
     {% block body %}
 
     {% endblock %}
+
+    <script>
+        {% if error_msg %}
+            {% for e in error_msg %}
+                alert('{{ e }}');
+            {% endfor %}
+        {% endif %}
+
+    </script>
+    {% block custom_script %}
+    {% endblock %}
+
+
 </body>
 </html>

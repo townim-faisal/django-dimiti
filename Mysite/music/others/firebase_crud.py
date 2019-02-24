@@ -1,23 +1,5 @@
 from datetime import datetime
-from pyrebase import pyrebase
-
-
-class FB_C:
-    config = {
-        #firebase configs here
-    }
-    config_a = {
-        #firebase admin configs here
-    }
-
-    def get_firebase_instance(self, **kwargs):
-        if kwargs:
-            if kwargs['type']=='admin':
-                return pyrebase.initialize_app(self.config_a)
-        else:
-            return pyrebase.initialize_app(self.config)
-
-
+from ..config.firebase_config import FB_C
 
 def save_file_to_firebase(**kwargs):
     firebase = FB_C().get_firebase_instance()

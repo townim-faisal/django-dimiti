@@ -30,6 +30,5 @@ def create_song(request, album_id):
 def delete_song(request, album_id=None, song_id=None):
     return remove_song(request, album_id, song_id)
 
-
 def delete_album(request, album_id):
     return remove_album(request, album_id)

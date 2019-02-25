@@ -13,11 +13,6 @@ class Album(models.Model):
     def __str__(self):
         return self.album_title+" - "+self.artist
 
-class File_type(models.Model):
-    f_type = models.CharField(max_length=10)
-
-    def __str__(self):
-        return self.f_type
 
 class Song(models.Model):
     song_title = models.CharField(max_length=200)

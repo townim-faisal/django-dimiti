@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<title>Dimity | Sign In</title>
+{% endblock %}
+
+{% block body %}
+<div class="col-md-4" style="margin: 0 auto; float: none;">
+    <h1 class="text-center">Sign In</h1>
+    <div class="thumbnail w3-container w3-teal w3-text-light-grey form-container" style="border-radius: 0px">
+        {% if messages %}
+        {% for message in messages %}
+          <div style="color: red;">
+            <p class="w3-medium w3-center error_msg" style="padding: 0; margin-bottom: 2%;">{{ message }}!</p>
+          </div>
+        {% endfor %}
+        {% endif %}
+
+        <form class="form-horizontal" method="post" action="{% url 'signin' %}">
+            {% csrf_token %}
+            <div class="form-group">
+              <label class="control-label col-lg-4 col-sm-2" for=""><label for="id_username">Username:</label></label>
+              <div class="col-lg-8 col-sm-10">
+                  <span class="">
+                    <input type="text" name="username" maxlength="150" autofocus="" required class="form-control w3-light-grey">
+                  </span>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-lg-4 col-sm-2" for="">
+                <label for="id_password1">Password:</label></label>
+              <div class="col-lg-8 col-sm-10">
+                  <span class="">
+                    <input type="password" name="password" required class="form-control w3-light-grey">
+                  </span>
+              </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-lg-4 col-sm-2" for=""></label>
+                <div class="col-lg-8 col-sm-10">
+                    <span class="">
+                      <input type="submit" id="create" name="create_btn" class="btn btn-default btn-block" value="Sign In">
+                    </span>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

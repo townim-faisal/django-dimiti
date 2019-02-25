@@ -21,7 +21,7 @@ def get_album_details(request, album_id, **kwargs):
     }
     if kwargs:
         context = kwargs['context']
-    print(context)
+    #print(context)
     return render(request, 'music/album/details.html', context)
 
 

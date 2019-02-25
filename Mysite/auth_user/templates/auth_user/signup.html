@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<title>Dimity | Sign Up</title>
+{% endblock %}
+
+{% block body %}
+<div class="col-md-4" style="margin: 0 auto; float: none;">
+    <h1 class="text-center">Sign Up</h1>
+    <div class="thumbnail w3-container w3-teal w3-text-light-grey form-container" style="border-radius: 0px">
+        {% if signup_form %}
+        {% for form in signup_form %}
+            {% for e in form.errors %}
+                <div style="color: red;">
+                  <p class="w3-medium w3-center error_msg" style="padding: 0; margin-bottom: 2%;">{{ e }}!</p>
+                </div>
+            {% endfor %}
+        {% endfor %}
+        {% endif %}
+
+        <form class="form-horizontal" method="post" action="{% url 'signup' %}">
+            {% csrf_token %}
+            {% for form in signup_form %}
+            <div class="form-group">
+              <label class="control-label col-lg-4 col-sm-2" for="">{{ form.label_tag }}</label>
+              <div class="col-lg-8 col-sm-10">
+                  <!--file input example -->
+                  <span class="">
+                    {{form}}
+                  </span>
+              </div>
+            </div>
+            {% endfor %}
+            <div class="form-group">
+                <label class="control-label col-lg-4 col-sm-2" for=""></label>
+                <div class="col-lg-8 col-sm-10">
+                    <!--file input example -->
+                    <span class="">
+                      <input type="submit" id="create" name="create_btn" class="btn btn-default" value="Sign Up">
+                    </span>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+{% block custom_script %}
+<script type="text/javascript">
+  $(document).ready(function(){
+      $("input").addClass("form-control w3-light-grey");
+  });
+</script>
+{% endblock %}

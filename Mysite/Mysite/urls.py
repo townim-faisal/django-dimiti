@@ -15,8 +15,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, re_path, include
+from auth_user.views import user_signin, user_signout, user_signup
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    re_path(r'^music/', include('music.urls'))
+    re_path(r'^music/', include('music.urls')),
+    #authentication
+    path('signin/', user_signin, name='signin'),
+    path('signout/', user_signout, name='signout'),
+    path('signup/', user_signup, name='signup'),
 ]

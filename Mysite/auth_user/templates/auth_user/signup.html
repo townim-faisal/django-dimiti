@@ -18,6 +18,12 @@
         {% endfor %}
         {% endif %}
 
+        {% if check_email %}
+          <div style="color: #005a00;">
+            <p class="w3-medium w3-center" style="padding: 0; margin-bottom: 2%;">{{ check_email }}!</p>
+          </div>
+        {% endif %}
+
         <form class="form-horizontal" method="post" action="{% url 'signup' %}">
             {% csrf_token %}
             {% for form in signup_form %}

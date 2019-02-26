@@ -16,6 +16,12 @@
         {% endfor %}
         {% endif %}
 
+        {% if activate_message %}
+          <div style="color: #005a00;">
+            <p class="w3-medium w3-center" style="padding: 0; margin-bottom: 2%;">{{ activate_message }}!</p>
+          </div>
+        {% endif %}
+
         <form class="form-horizontal" method="post" action="{% url 'signin' %}">
             {% csrf_token %}
             <div class="form-group">

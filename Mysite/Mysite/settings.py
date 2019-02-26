@@ -119,3 +119,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
+
+# Email settings
+EMAIL_HOST = 'smtp.mailtrap.io'
+EMAIL_HOST_USER = 'ea5f25fde27ae2'
+EMAIL_HOST_PASSWORD = '86af205dd3b023'
+EMAIL_PORT = 25
+EMAIL_USE_TLS = True

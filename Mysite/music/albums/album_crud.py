@@ -55,7 +55,7 @@ def make_album(request):
 
         if is_form_valid:
             if img:
-                img_folder = save_file_to_firebase(file=img, type='image', album_name=album_title)
+                img_folder = save_file_to_firebase(file=img, type='image', path='album_covers/'+album_title)
                 img = img_folder[0]
                 file_path = img_folder[1]
 

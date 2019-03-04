@@ -1,0 +1,48 @@
+{% extends 'music/base.html' %}
+{% block custom_css %}
+    {{ form.media }}
+{% endblock %}
+{% block body %}
+    <div class="col-lg-4 col-sm-6 col-lg-offset-4 w3-border w3-padding w3-teal">
+        <div class="card hovercard">
+            <div class="w3-center w3-margin">
+                <h3>Edit Profile</h3>
+            </div>
+            <hr>
+            <form class="form-horizontal" method="post" action="{% url 'profile:profile_edit' %}" enctype="multipart/form-data">
+                {% csrf_token %}
+                {% for field in form %}
+                    <div class="form-group">
+                        <label class="control-label col-lg-4 col-sm-2" for="">{{ field.label_tag }}</label>
+                        <div class="col-lg-8 col-sm-10">
+                        <!--file input example -->
+                        <span class="">
+                        {{field}}
+                        </span>
+                        </div>
+                    </div>
+                {% endfor %}
+                <div class="form-group">
+                    <label class="control-label col-lg-4 col-sm-2" for=""></label>
+                    <div class="col-lg-8 col-sm-10">
+                        <!--file input example -->
+                        <span class="">
+                          <input type="submit" id="edit" name="edit_profile_btn" class="btn btn-default" value="Save">
+                        </span>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}
+
+{% block custom_script %}
+<script type="text/javascript">
+  $(document).ready(function(){
+      $("input").addClass("form-control w3-light-grey");
+      $("select").addClass("w3-text-black");
+      $(":file").removeClass("form-control w3-light-grey");
+      $("input[name='birth_date']").attr({type:"date"});
+  });
+</script>
+{% endblock %}

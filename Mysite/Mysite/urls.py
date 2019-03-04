@@ -56,4 +56,7 @@ urlpatterns = [
         ),
         name='password_reset_complete'
     ),
+    #profile
+    re_path(r'^profile/', include('user_profile.urls')),
+
 ]

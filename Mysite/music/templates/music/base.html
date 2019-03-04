@@ -56,6 +56,11 @@
                         </a>
                     </li>
                     <li>
+                        <a href="{% url 'profile:profile_view' user.id %}">
+                            <span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp; View Profile
+                        </a>
+                    </li>
+                    <li>
                         <a href="{% url 'signout' %}">
                             <span class="glyphicon glyphicon-off" aria-hidden="true"></span>&nbsp; Sign Out
                         </a>

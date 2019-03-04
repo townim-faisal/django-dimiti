@@ -1,0 +1,43 @@
+{% extends 'music/base.html' %}
+{% block custom_css %}
+    {% load staticfiles %}
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static 'user_profile/profile_style.css' %}"/>
+{% endblock %}
+
+{% block body %}
+    	<div class="col-lg-4 col-sm-6 col-lg-offset-4 w3-border">
+
+            <div class="card hovercard w3-border">
+                <div class="cardheader">
+
+                </div>
+                <div class="avatar">
+                    {% if profile.avatar_url %}
+                        <img alt="" src="{{ profile.avatar_url }}">
+                    {% else %}
+                        <img alt="" src="https://www.flynz.co.nz/wp-content/uploads/profile-placeholder.png">
+                    {% endif %}
+                </div>
+                <div class="info">
+                    <div class="title">
+                        <a target="_blank" href="https://scripteden.com/">{{ profile.first_name }} {{ profile.last_name }}</a>
+                    </div>
+                    <div class="desc">{{ profile.user.username }}</div>
+                    <div class="desc">{{ profile.gender }}</div>
+                    <div class="desc">{{ profile.birth_date }}</div>
+                </div>
+                <div class="bottom">
+                    <!--a class="btn btn-danger btn-sm" rel="publisher"
+                       href="#">
+                        <i class="fa fa-google-plus"></i>
+                    </a>
+                    <a class="btn btn-primary btn-sm" rel="publisher"
+                       href="https://plus.google.com/shahnuralam">
+                        <i class="fa fa-facebook"></i>
+                    </a-->
+                    <a class="btn btn-default btn-block" href="{% url 'profile:profile_edit' %}">Edit Profile</a>
+                </div>
+            </div>
+        </div>
+{% endblock %}

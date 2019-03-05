@@ -8,7 +8,7 @@ class Profile(models.Model):
     first_name = models.CharField(max_length=30, blank=True)
     last_name = models.CharField(max_length=30, blank=True)
     gender = models.TextField(blank=True, choices=GENDER_CHOICES)
-    birth_date = models.DateField(blank=True, auto_now=False, auto_now_add=False)
+    birth_date = models.DateField(blank=True, auto_now=False, auto_now_add=False, null=True)
     avatar_url = models.CharField(max_length=500, blank=True, null=True)
     avatar_path = models.CharField(max_length=500, blank=True, null=True)
 

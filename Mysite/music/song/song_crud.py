@@ -1,4 +1,7 @@
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
+from django.urls import reverse
+
 from music.models import Song
 from music.others.firebase_crud import save_file_to_firebase, delete_from_firebase
 
@@ -40,7 +43,7 @@ def make_song(request, album_id):
             file_path = audio_file[1]
             song = Song(song_title=song_title, album=current_album, file_url=file_url, file_path=file_path)
             song.save()
-            return album_details(request, album_id)
+            return HttpResponseRedirect(reverse('music:album-details', args=(album_id,)))
         album = get_object_or_404(Album, pk=album_id)
         songs = album.song_set.all()
         context = {
@@ -52,7 +55,8 @@ def make_song(request, album_id):
         return album_details(request, album_id, context = context)
         #return render(request, 'music/album/details.html', context)
     else:
-        return album_details(request, album_id)
+        #return album_details(request, album_id)
+        return HttpResponseRedirect(reverse('music:album-details', args=(album_id,)))
 
 
 def remove_song(request, album_id, song_id):
@@ -61,6 +65,8 @@ def remove_song(request, album_id, song_id):
     delete_from_firebase(song.file_path)
     song.delete()
     if album_id:
-        return album_details(request, album_id)
+        #return album_details(request, album_id)
+        return HttpResponseRedirect(reverse('music:album-details', args=(album_id,)))
     else:
-        return song_list(request)
+        #return song_list(request)
+        return HttpResponseRedirect(reverse('music:song-list'))

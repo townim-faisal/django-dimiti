@@ -23,7 +23,7 @@ Pillow==5.4.1
 protobuf==3.7.0rc2
 pyasn1==0.4.5
 pyasn1-modules==0.2.4
-pycryptodome==3.4.3
+pycryptodome>=3.4.3
 Pyrebase==3.0.27
 python-jwt==2.0.1
 pytz==2018.9

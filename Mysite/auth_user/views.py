@@ -4,6 +4,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.messages import error
 from django.contrib.sites.shortcuts import get_current_site
+from django.urls import reverse
 from django.utils.encoding import force_bytes, force_text
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.template.loader import render_to_string
@@ -65,16 +66,18 @@ def user_signin(request):
         user = authenticate(username=username, password=password)
         if user:
             login(request, user)
-            return HttpResponseRedirect('/music')
+            return HttpResponseRedirect(reverse('music:album-list'))
         else:
             error(request, 'Username or password incorrect')
-            return redirect('/signin')
+            #return redirect('/signin')
+            return HttpResponseRedirect(reverse('signin'))
     return render(request, 'auth_user/signin.html')
 
 #user can signout
 def user_signout(request):
     logout(request)
-    return HttpResponseRedirect('/signin')
+    #return HttpResponseRedirect('/signin')
+    return HttpResponseRedirect(reverse('signin'))
 
 #user activation
 def user_activate(request, uidb64, token):
@@ -90,4 +93,4 @@ def user_activate(request, uidb64, token):
         return render(request, 'auth_user/signin.html', {'activate_message' : 'Successfully activated'})
     else:
         error(request, 'Activation link is invalid!')
-        return redirect('/signin')
+        return HttpResponseRedirect(reverse('signin'))

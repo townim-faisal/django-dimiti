@@ -20,7 +20,7 @@ from user_profile import views
 app_name = 'profile'
 
 urlpatterns = [
-    path('view/<int:user_id>/', views.profile_view, name='profile_view'),
+    path('view/<username>/', views.profile_view, name='profile_view'),
     path('edit/', views.profile_edit, name='profile_edit'),
 
 

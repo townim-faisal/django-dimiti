@@ -12,7 +12,7 @@ from user_profile.models import Profile
 
 
 @login_required()
-def profile_view(request, user_id):
+def profile_view(request, username):
     user = User.objects.get(id=request.user.id)
     try:
         profile = Profile.objects.get(user=user)
@@ -52,7 +52,7 @@ def save_form(request):
             profile.avatar_path = img_folder[1]
 
         profile=form.save(commit=True)
-    return HttpResponseRedirect(reverse('profile:profile_view', args=(request.user.id,)))
+    return HttpResponseRedirect(reverse('profile:profile_view', args=(request.user.username,)))
 
 @login_required()
 def profile_edit(request):

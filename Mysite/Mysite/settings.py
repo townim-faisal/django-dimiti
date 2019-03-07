@@ -124,8 +124,8 @@ LOGIN_URL = '/signin'
 # Email settings
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.mailtrap.io'
-EMAIL_HOST_USER = 'ea5f25fde27ae2'
-EMAIL_HOST_PASSWORD = '86af205dd3b023'
+EMAIL_HOST_USER = '7673623f771f20' #'ea5f25fde27ae2' #-faisal
+EMAIL_HOST_PASSWORD = '81904e8a727122' #'86af205dd3b023' #-faisal
 EMAIL_PORT = '2525'
 EMAIL_USE_TLS = True
 

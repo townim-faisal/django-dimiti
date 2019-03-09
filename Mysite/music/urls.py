@@ -29,4 +29,7 @@ urlpatterns = [
     path('delete_album/<int:album_id>/', views.delete_album, name='delete-album'),
     path('delete_song/<int:album_id>/<int:song_id>/', views.delete_song, name='delete-song-fa'),
     path('delete_song/<int:song_id>/', views.delete_song, name='delete-song'),
+
+    #user is not permit
+    path('not_permitted/', views.user_is_not_permitted, name='user_not_permitted'),
 ]

@@ -51,9 +51,11 @@
                 </form>
                 <ul class="nav navbar-nav navbar-right">
                     <li>
+                        {% if user.is_superuser %}
                         <a href="{% url 'music:create-album' %}">
                             <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp; Add Album
                         </a>
+                        {% endif %}
                     </li>
                     <li>
                         <a href="{% url 'profile:profile_view' user.username %}">

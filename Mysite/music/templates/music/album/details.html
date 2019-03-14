@@ -6,7 +6,9 @@
 
 {% block body %}
     <div class="container-fluid songs-container">
-    {% include 'music/song/create_song.html' %}
+    {% if user.is_superuser %}
+     {% include 'music/song/create_song.html' %}
+    {% endif %}
     <div class="row">
 
         <!-- Left Album Info -->
@@ -28,11 +30,11 @@
 
         <!-- Right Song Info -->
         <div class="col-sm-8 col-md-9">
-
+            {% if user.is_superuser %}
             <ul class="nav nav-pills" style="margin-bottom: 10px;">
                 <li role="presentation" class="w3-teal w3-border w3-border-black"><a href="#" onclick="document.getElementById('id01').style.display='block'" class=" w3-text-white">Add New Song</a></li>
             </ul>
-
+            {% endif %}
             <div class="panel panel-default w3-teal w3-border w3-border-black">
                 <div class="panel-body">
 
@@ -49,7 +51,9 @@
                             <th>Audio File</th>
                             <th>Lyrics</th>
                             <th>Favorite</th>
+                            {% if user.is_superuser %}
                             <th>Actions</th>
+                            {% endif %}
                         </tr>
                         </thead>
                         <tbody class="">
@@ -76,6 +80,7 @@
                                 <td>
                                     <a href="#" class="btn-favorite"><span class="glyphicon glyphicon-star {% if song.is_favorite %}active{% endif %}"></span></a>
                                 </td>
+                                {% if user.is_superuser %}
                                 <td>
                                     <form action="{% if album %}{% url 'music:delete-song-fa' album.id song.id%}{% else %}{% url 'music:delete-song' song.id%}{% endif %}" method="post" style="display: inline;">
                                         {% csrf_token %}
@@ -85,6 +90,7 @@
                                         </button>
                                     </form>
                                 </td>
+                                {% endif %}
                             </tr>
                         {% endfor %}
                         </tbody>

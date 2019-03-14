@@ -27,10 +27,11 @@
                             <div id="{{ song.id }}" class="collapse">
                                 <pre>{{ song.lyrics }}</pre>
                             </div>
+                            {% if user.is_superuser %}
                             <a href="{% if album %}{% url 'music:delete-song-fa' album.id song.id%}{% else %}{% url 'music:delete-song' song.id%}{% endif %}">
                                     <button class="w3-border btn btn-danger btn-xs"><span class="glyphicon glyphicon-trash"></span></button>
                             </a>
-
+                            {% endif %}
                             <!-- Favorite Album -->
                         </div>
                     </div>

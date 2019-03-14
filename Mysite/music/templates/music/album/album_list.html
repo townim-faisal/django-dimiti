@@ -28,6 +28,7 @@
             >
             <h6>{{ album.artist }}</h6>
             <!-- Delete Album -->
+            {% if user.is_superuser %}
             <form
               action="{% url 'music:delete-album' album.id %}"
               method="post"
@@ -39,7 +40,7 @@
                 <span class="glyphicon glyphicon-trash"></span>
               </button>
             </form>
-
+            {% endif %}
             <!-- Favorite Album -->
             <a
               href="#"

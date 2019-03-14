@@ -20,6 +20,7 @@ from django.contrib.auth import views as password_reset_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+
     # music
     re_path(r'^music/', include('music.urls')),
 
@@ -56,7 +57,9 @@ urlpatterns = [
         ),
         name='password_reset_complete'
     ),
+
     #profile
     re_path(r'^profile/', include('user_profile.urls')),
+
 
 ]

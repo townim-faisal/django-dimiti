@@ -21,7 +21,12 @@
                             <a href="{{ song.file_url }}" target=_blank" class="btn btn-success w3-border btn-xs btn-favorite" role="button">
                                 <span class="glyphicon glyphicon-play-circle"></span>
                             </a>
-
+                            <a href="#{{ song.id }}" class="btn btn-primary btn-xs w3-border btn-xs btn-favorite" data-toggle="collapse">
+                                <span class="glyphicon glyphicon-duplicate"></span>
+                            </a>
+                            <div id="{{ song.id }}" class="collapse">
+                                <pre>{{ song.lyrics }}</pre>
+                            </div>
                             <a href="{% if album %}{% url 'music:delete-song-fa' album.id song.id%}{% else %}{% url 'music:delete-song' song.id%}{% endif %}">
                                     <button class="w3-border btn btn-danger btn-xs"><span class="glyphicon glyphicon-trash"></span></button>
                             </a>

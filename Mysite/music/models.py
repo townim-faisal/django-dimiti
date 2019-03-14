@@ -19,6 +19,7 @@ class Song(models.Model):
     album = models.ForeignKey(Album, on_delete=models.CASCADE)
     file_url = models.CharField(max_length=500)
     file_path = models.CharField(max_length=500)
+    lyrics = models.TextField(null=True, blank=True, default="No Lyric Found")
     class Meta:
         ordering = ['song_title']
     def __str__(self):

@@ -47,6 +47,7 @@
                         <tr>
                             <th>Title</th>
                             <th>Audio File</th>
+                            <th>Lyrics</th>
                             <th>Favorite</th>
                             <th>Actions</th>
                         </tr>
@@ -61,6 +62,16 @@
                                             <span class="glyphicon glyphicon-play"></span>&nbsp; Play
                                         </button>
                                     </a>
+                                </td>
+
+                                <td>
+
+                                    <a href="#{{ song.id }}" class="btn btn-primary w3-border-black btn-xs" data-toggle="collapse">
+                                        <span class="glyphicon glyphicon-duplicate"></span>&nbsp; Lyric
+                                    </a>
+                                    <div id="{{ song.id }}" class="collapse">
+                                        <pre>{{ song.lyrics }}</pre>
+                                    </div>
                                 </td>
                                 <td>
                                     <a href="#" class="btn-favorite"><span class="glyphicon glyphicon-star {% if song.is_favorite %}active{% endif %}"></span></a>

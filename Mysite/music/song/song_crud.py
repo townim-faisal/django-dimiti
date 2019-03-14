@@ -1,9 +1,11 @@
+
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse
 
 from music.models import Song
 from music.others.firebase_crud import save_file_to_firebase, delete_from_firebase
+from music.song.lyric_finder import parse_lyric
 
 
 def get_song_list(request):
@@ -13,6 +15,8 @@ def get_song_list(request):
         'title': 'All songs'
     }
     return render(request, 'music/song/song_list.html', context)
+
+
 
 def make_song(request, album_id):
     from ..views import album_details
@@ -38,10 +42,11 @@ def make_song(request, album_id):
         #print(error_msg)
         if(is_form_valid):
             current_album = Album.objects.get(pk=album_id)
-            audio_file = save_file_to_firebase(file=audio_file, type='audio', album_name=current_album.album_title+str(album_id))
+            lyric = parse_lyric(song_title, current_album.artist)
+            audio_file = save_file_to_firebase(file=audio_file, type='audio', path=current_album.album_title+str(album_id))
             file_url = audio_file[0]
             file_path = audio_file[1]
-            song = Song(song_title=song_title, album=current_album, file_url=file_url, file_path=file_path)
+            song = Song(song_title=song_title, album=current_album, file_url=file_url, file_path=file_path, lyrics = lyric)
             song.save()
             return HttpResponseRedirect(reverse('music:album-details', args=(album_id,)))
         album = get_object_or_404(Album, pk=album_id)

@@ -9,8 +9,10 @@ An music web app using django.
 - mailtrap for fake email
 
 ### Features:-
-2 roles i.e user and admin. User should register to hear the music and create playlists. 
-Also have authentication systems i.e send mail for activating, forget password email, registration syslem.
+- 2 roles i.e user and admin. User should register to hear the music and create playlists. 
+- Also have authentication systems i.e send mail for activating, forget password email, registration syslem.
+- After uploading a song it will try finding its lyric automatically from internet
+
 ##### User:
 - create a playlist
 - update profile and password

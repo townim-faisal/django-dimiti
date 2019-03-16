@@ -12,7 +12,7 @@ def save_file_to_firebase(**kwargs):
             file_path = kwargs['path'] + str(datetime.now()) + '/' + str(file)
 
         elif kwargs['type']=='audio':
-            file_path = 'music/song/'+ str(file)
+            file_path = 'music/song/'+kwargs['path']+'/'+str(datetime.now())+ str(file)
 
         storage.child(file_path).put(file)
         file_url = storage.child(file_path).get_url(None)

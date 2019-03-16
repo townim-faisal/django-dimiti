@@ -2,7 +2,6 @@ from django.shortcuts import render, get_object_or_404
 from music.models import Album
 from music.others.firebase_crud import save_file_to_firebase, delete_from_firebase
 
-
 def get_album_list(request):
     albums = Album.objects.all()
     context = {
@@ -14,6 +13,7 @@ def get_album_list(request):
 def get_album_details(request, album_id, **kwargs):
     album = get_object_or_404(Album, pk=album_id)
     songs = album.song_set.all()
+
     context = {
         'title': album.album_title,
         'album': album,
